@@ -3,7 +3,7 @@ from langchain_core.documents import Document
 from langchain_chroma import Chroma
 import os
 from dotenv import load_dotenv
-from config.ai_model import connection
+from config.ai_model import embedding_model
 
 load_dotenv()
 
@@ -76,13 +76,13 @@ client = chromadb.CloudClient(
 vector_store = Chroma(
     client=client,
     collection_name="my_collection",
-    embedding_function=connection
+    embedding_function=embedding_model
 )
 
 doc_ids = ["doc1", "doc2", "doc3", "doc4", "doc5"]
 vector_store.add_documents(docs, ids=doc_ids)
 
-embeddings = connection.embed_documents([doc.page_content for doc in docs])
+embeddings = embedding_model.embed_documents([doc.page_content for doc in docs])
 print(embeddings)
 
 results = vector_store.similarity_search(

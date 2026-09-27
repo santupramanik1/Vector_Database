@@ -23,4 +23,4 @@ print(docs)
 
 for i, doc in enumerate(docs):
     print(f"\n---- Result {i + 1} ----")
-    print(f"Content:\n{doc.page_content[:2000]}...")
+    print(f"Content:\n{doc.page_content}...")
